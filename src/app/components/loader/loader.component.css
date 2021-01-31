@@ -1,0 +1,21 @@
+.loader-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: absolute;
+  z-index: 9999999999999999;
+  align-items: center;
+  top: 0px;
+  left: 0px;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 96969696669696369636366;
+}
+
+.loader {
+  z-index: 96969696669696369636366346;
+}

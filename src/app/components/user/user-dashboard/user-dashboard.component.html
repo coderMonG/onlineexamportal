@@ -1,0 +1,71 @@
+<div class="bootstrap-wrapper">
+    <div class="row">
+        <div class="col-md-3">
+            <mat-card class="">
+                <mat-action-list>
+                    <div mat-subheader>Categories</div>
+                    <button routerLink="/user/0/all" mat-list-item>
+                        <mat-icon class="mr-2" color="primary" mat-list-icon>airplay</mat-icon>
+                        All
+                    </button>
+                    <button *ngFor="let c of categories" [routerLink]="['/user/'+c.id+'/'+c.title]" mat-list-item>
+                        <mat-icon class="mr-2" color="primary" mat-list-icon>airplay</mat-icon>
+                        {{c.title | uppercase}}
+                    </button>
+
+                </mat-action-list>
+            </mat-card>
+        </div>
+        <div class="col-md-9">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>
+                        {{givenCTitle | uppercase}}
+                    </mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <div class="row">
+
+                        <div class="col-md-12" *ngIf="loading">
+                            <div class="container text-center">
+                                <mat-spinner style="margin: auto;"></mat-spinner>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" *ngIf="quizzez.length==0">
+                            <div class="container text-center">
+                                <img style="width: 200px;" class="img-fluid" src="../../../../assets/not_available.png"
+                                    alt="">
+                                <h3>No Quiz Available in this category</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 my-2" *ngFor="let q of quizzez">
+                            <div class="quiz-card">
+                                <h3 class="quiz-title">{{q.title}}</h3>
+
+                                <p class="truncate two-lines ">{{q.content}}</p>
+
+
+                                <div class="">
+
+                                    <span>{{q.numberOfQuestions}} Questions</span>
+                                    <span class="ml-3">Max Marks {{q.maxMarks}} </span>
+
+                                </div>
+
+                                <div class="container text-center mt-2">
+                                    <button [routerLink]="['/user/quiz/start/'+q.quizId]" mat-raised-button
+                                        color="primary">Start..</button>
+                                    <button mat-raised-button class="ml-2">View ..</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

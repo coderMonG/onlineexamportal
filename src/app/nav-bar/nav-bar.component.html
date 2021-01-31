@@ -1,0 +1,58 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>book</mat-icon>
+  </button>
+  <span><a mat-icon-button> Pariskha</a></span>
+  <span class="example-spacer"></span>
+
+  <a
+    *ngIf="!loggedIn"
+    routerLink="/"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    Home
+  </a>
+  <a
+    *ngIf="!loggedIn"
+    routerLink="/login"
+    mat-icon-button
+    class="example-icon ml-2"
+    aria-label="Example icon-button with menu icon"
+  >
+    Login
+  </a>
+  <a
+    *ngIf="!loggedIn"
+    routerLink="/register"
+    mat-icon-button
+    class="example-icon mx-2"
+    aria-label="Example icon-button with menu icon"
+  >
+    Register
+  </a>
+
+  <button
+    *ngIf="loggedIn"
+    (click)="logoutUser()"
+    mat-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    Logout
+  </button>
+
+  <button
+    *ngIf="loggedIn"
+    mat-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    {{ user.username }}
+  </button>
+</mat-toolbar>

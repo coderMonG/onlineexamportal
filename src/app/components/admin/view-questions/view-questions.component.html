@@ -1,0 +1,75 @@
+<div class="bootstrap-wrapper p-3">
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9">
+      <mat-card class="my-1">
+        <mat-card-header>
+          <mat-card-subtitle>
+            Questions of <span style="font-style: italic">{{ qTitle }}</span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="container text-center mt-2">
+            <button
+              [matTooltip]="['Add new question to ' + qTitle]"
+              [routerLink]="['/dashboard/add-question', qid]"
+              mat-mini-fab
+              color="accent"
+              aria-label="Example icon button with a delete icon"
+            >
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card *ngFor="let q of questions; let i = index" class="mb-2">
+        <!-- <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>{{q.title}}</mat-card-title>
+                    <mat-card-subtitle> {{q.category.title}}</mat-card-subtitle>
+                   
+                </mat-card-header> -->
+        <mat-card-content>
+          <p class="p-3">
+            Q {{ i + 1 }} ) <span [innerHTML]="q.content"></span>
+          </p>
+
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <p>1) {{ q.option1 }}</p>
+              </div>
+              <div class="col-md-6">
+                <p>2) {{ q.option2 }}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <p>3) {{ q.option3 }}</p>
+              </div>
+              <div class="col-md-6">
+                <p>4) {{ q.option4 }}</p>
+              </div>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+
+          <p class="mt-2 p-3">Correct Answer : {{ q.answer }}</p>
+        </mat-card-content>
+        <mat-card-action>
+          <button
+            (click)="deleteQuestion(q.questionId)"
+            class="ml-2"
+            mat-raised-button
+            color="accent"
+          >
+            Delete
+          </button>
+        </mat-card-action>
+      </mat-card>
+    </div>
+  </div>
+</div>

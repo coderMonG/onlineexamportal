@@ -1,0 +1,27 @@
+<mat-card class="">
+  <mat-action-list>
+    <div mat-subheader>Menu</div>
+    <button routerLink="/dashboard/" mat-list-item>
+      <mat-icon mat-list-icon>home</mat-icon> Home
+    </button>
+    <button routerLinkActive="active" routerLink="/dashboard/add-category" mat-list-item>
+      <mat-icon mat-list-icon>folder</mat-icon> Add Category
+    </button>
+    <button routerLinkActive="active" routerLink="/dashboard/view-categories" mat-list-item>
+      <mat-icon mat-list-icon>add_shopping_cart</mat-icon> View Categories
+    </button>
+    <mat-divider></mat-divider>
+    <button routerLinkActive="active" routerLink="/dashboard/quizzes" mat-list-item>
+      <mat-icon mat-list-icon>book</mat-icon>
+      All Quizzes
+    </button>
+    <button routerLinkActive="active" mat-list-item routerLink="/dashboard/add-quiz">
+      <mat-icon mat-list-icon>add</mat-icon>
+      Add Quiz
+    </button>
+    <button (click)="logout()" mat-list-item>
+      <mat-icon mat-list-icon>logout</mat-icon>
+      Logout
+    </button>
+  </mat-action-list>
+</mat-card>

@@ -1,0 +1,31 @@
+<div class="bootstrap-wrapper p-3">
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9">
+      <mat-card>
+        <mat-list>
+          <div mat-subheader>All Categories</div>
+          <mat-list-item matRipple [matRippleColor]="myColor" *ngFor="let c of categories">
+            <mat-icon mat-list-icon>folder</mat-icon>
+            <div mat-line>{{ c.title }}</div>
+            <div mat-line>{{ c.description }}</div>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+
+
+
+
+        <div class="container text-center mt-2">
+          <button routerLink="/dashboard/add-category" mat-fab color="accent"
+            aria-label="Example icon button with a delete icon">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+</div>

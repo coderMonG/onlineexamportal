@@ -1,0 +1,70 @@
+<div class="bootstrap-wrapper p-3">
+    <div class="row">
+        <div class="col-md-3">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="col-md-9">
+            <mat-card>
+                <mat-card-subtitle>
+                    Add New Quiz
+                </mat-card-subtitle>
+                <mat-card-content>
+                    <form (ngSubmit)="submitForm()">
+
+                        <!-- {{quiz | json}} -->
+
+                        <mat-form-field appearance="fill" class="w100">
+                            <mat-label>Select Category</mat-label>
+                            <mat-select required (selectionChange)="categoryChanged($event)" name="selectedCid"
+                                [(ngModel)]="quiz.selectedCid">
+                                <mat-option *ngFor="let c of categories" [value]="c.id">
+                                    {{c.title}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field class="w100">
+                            <mat-label>Quiz Title</mat-label>
+                            <input name="title" [(ngModel)]="quiz.title" autofocus placeholder="Enter Here" type="text"
+                                matInput>
+                        </mat-form-field>
+
+                        <mat-form-field class="example-full-width w100">
+                            <mat-label>Enter Complete Quiz Description</mat-label>
+                            <textarea name="content" [(ngModel)]="quiz.content" rows="15" matInput
+                                placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <mat-form-field class="w100">
+                                    <input name="maxMarks" [(ngModel)]="quiz.maxMarks" type="number" matInput
+                                        placeholder="Max Marks">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6">
+                                <mat-form-field class="w100">
+                                    <input name="numberOfQuestions" [(ngModel)]="quiz.numberOfQuestions" type="number"
+                                        matInput placeholder="Number of Questions">
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <!-- 
+                        <input type="file">
+                        <br>
+                        <br> -->
+
+                        <mat-slide-toggle name="active" [(ngModel)]="quiz.active">Plublish Quiz</mat-slide-toggle>
+
+                        <div class="container text-center">
+                            <button type="submit" mat-stroked-button color="primary">Add Quiz</button>
+                            <button type="reset" mat-stroked-button color="accent" class="ml-2">Reset</button>
+                        </div>
+
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

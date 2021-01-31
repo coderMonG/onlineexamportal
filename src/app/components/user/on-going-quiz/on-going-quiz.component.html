@@ -1,0 +1,211 @@
+<div class="bootstrap-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2" *ngIf="attempted == 0">
+        <!-- {{ questions | json }} -->
+        <mat-card class="mt-2" *ngIf="questions">
+          <mat-card-content>
+            <mat-card-subtitle> Important Notice </mat-card-subtitle>
+          </mat-card-content>
+          <mat-cart-content class="text-center">
+            <h3>
+              We are monitoring all the activity , so please do not change the
+              tab or try to make any non sense.
+            </h3>
+          </mat-cart-content>
+        </mat-card>
+      </div>
+      <div class="col-md-8" *ngIf="attempted == 0">
+        <mat-card class="mt-2" *ngIf="questions">
+          <mat-cart-header>
+            <mat-card-title
+              >{{ questions[0].quiz.title }} Online Examination
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ questions[0].quiz.category.title }} Category
+            </mat-card-subtitle>
+          </mat-cart-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-md-6">
+                Number of questions <b> {{ questions.length }}</b>
+              </div>
+              <div class="col-md-6">
+                Max Marks : <b>{{ questions[0].quiz.maxMarks }}</b>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card *ngFor="let q of questions; let i = index" class="mt-3">
+          <mat-card-content>
+            <h3>
+              <p [innerHTML]="q.content"></p>
+            </h3>
+
+            <div class="row">
+              <div class="col-md-6">
+                <!-- <mat-radio-group [(ngModel)]="q.givenAnswer">
+                  <mat-radio-button [value]="q.option1">{{
+                    q.option1
+                  }}</mat-radio-button>
+                </mat-radio-group> -->
+                <input
+                  type="radio"
+                  [(ngModel)]="q.givenAnswer"
+                  [value]="q.option1"
+                  [name]="i"
+                />
+                {{ q.option1 }}
+              </div>
+              <div class="col-md-6">
+                <!-- <mat-radio-group >
+                  <mat-radio-button ></mat-radio-button>
+                </mat-radio-group> -->
+
+                <input
+                  type="radio"
+                  [(ngModel)]="q.givenAnswer"
+                  [value]="q.option2"
+                  [name]="i"
+                />
+                {{ q.option2 }}
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-md-6">
+                <!-- <mat-radio-group [(ngModel)]="q.givenAnswer">
+                  <mat-radio-button [value]="q.option3">{{
+                    q.option3
+                  }}</mat-radio-button>
+                </mat-radio-group> -->
+                <input
+                  type="radio"
+                  [(ngModel)]="q.givenAnswer"
+                  [value]="q.option3"
+                  [name]="i"
+                />
+                {{ q.option3 }}
+              </div>
+              <div class="col-md-6">
+                <!-- <mat-radio-group [(ngModel)]="q.givenAnswer">
+                  <mat-radio-button [value]="q.option5">{{
+                    q.option4
+                  }}</mat-radio-button>
+                </mat-radio-group> -->
+                <input
+                  type="radio"
+                  [(ngModel)]="q.givenAnswer"
+                  [value]="q.option4"
+                  [name]="i"
+                />
+                {{ q.option4 }}
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="mt-3" *ngIf="questions">
+          <mat-card-content>
+            <div class="container text-center">
+              <button color="primary" (click)="submitQuiz()" mat-raised-button>
+                Submit Quiz
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="col-md-2" *ngIf="attempted == 0">
+        <!-- {{ questions | json }} -->
+        <mat-card class="sticky mt-2" *ngIf="questions">
+          <mat-card-content>
+            <mat-card-subtitle>
+              Quiz will automatically submitted when timer reaches to 0 : 0
+            </mat-card-subtitle>
+          </mat-card-content>
+          <mat-cart-content class="text-center">
+            <h1>{{ getFormattedTime() }}</h1>
+            <br />
+            <mat-progress-spinner
+              class="mx-auto"
+              mode="determinate"
+              color="warn"
+              [value]="(timer / (questions.length * 1 * 60)) * 100"
+            ></mat-progress-spinner>
+          </mat-cart-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- //result -->
+    <div class="row" *ngIf="attempted != 0">
+      <div class="col-md-6 offset-md-3">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>
+              {{ questions[0].quiz.title }} Online Examination
+            </mat-card-title>
+            <mat-card-subtitle>
+              {{ questions[0].quiz.category.title }} Category
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <h1 class="mx-3">Result</h1>
+
+            <div class="container text-center mb-3">
+              <!-- <img
+                src="../../../../assets/cong.png"
+                class="img-fluid rounded"
+                style="width: 350px"
+                alt=""
+              /> -->
+            </div>
+  
+            <!--<h1 class="text-center">
+              Total Questions :
+              <b>
+                 ><i>{{ questions.length }}</i></b 
+                <i>{{ "" }}</i></b
+              >
+            </h1>
+            <h1 class="text-center">
+              Questions Attempted :
+               <b><i>{{ attempted }}</i></b> 
+              <b><i>{{ "" }}</i></b>
+            </h1>
+            <h1 class="text-center">
+              Marks Obtained :
+               <b><i>{{ marksGot }}</i></b> 
+              <b><i>{{ "" }}</i></b>
+            </h1>
+            <h1 class="text-center">
+              Correctly Answer :
+               <b><i>{{ correctAnswers }}</i></b> 
+              <b><i>{{ "" }}</i></b>
+            </h1>-->
+            <h1 class="text-center">
+              Result :
+              <!-- <b><i>{{ result }}</i></b> -->
+              <b><i>{{ result }}</i></b>
+            </h1>
+          </mat-card-content>
+          <mat-card-action>
+            <div class="container text-center">
+              <button routerLink="/" mat-raised-button color="primary">
+                HOME
+              </button>
+              <!-- <button
+                (click)="print()"
+                mat-raised-button
+                color="warn"
+                class="mx-2"
+              >
+                Download
+              </button> -->
+            </div>
+          </mat-card-action>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
